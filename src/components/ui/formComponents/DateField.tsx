@@ -1,5 +1,5 @@
 import { BaseFieldProps } from "@/types/commonTypes";
-import { DatePicker, Form } from "antd";
+import { DatePicker, Form, Input } from "antd";
 
 export const DateField: React.FC<BaseFieldProps> = ({
   field,
@@ -18,6 +18,7 @@ export const DateField: React.FC<BaseFieldProps> = ({
   >
     <DatePicker
       value={value}
+      className="input"
       placeholder={field.DISPLAY_NAME}
       format="DD-MMM-YYYY"
       onChange={(date) => onChange(field.FIELD_NAME, date)}
