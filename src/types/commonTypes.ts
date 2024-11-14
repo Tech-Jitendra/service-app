@@ -65,3 +65,13 @@ export interface DynamicFormProps {
 export interface DropdownData {
   [key: string]: Array<{ code: string; name: string }>;
 }
+
+export interface BaseFieldProps {
+  field: Field;
+  value: any;
+  onChange: (name: string, value: any) => void;
+}
+
+export interface DropdownFieldProps extends BaseFieldProps {
+  dropdownOptions: Array<{ code: string; name: string }>;
+}

@@ -10,14 +10,18 @@ import {
   Field,
   SubGroup,
 } from "@/types/commonTypes";
-export class ApiError extends Error {
+import { TextField } from "./formComponents/TextField";
+import { TextAreaField } from "./formComponents/TextAreaField";
+import { DropdownField } from "./formComponents/DropdownField";
+import { DateField } from "./formComponents/DateField";
+class ApiError extends Error {
   constructor(message: string, public statusCode?: number) {
     super(message);
     this.name = "ApiError";
   }
 }
 
-export const fetchDropdownOptions = async (
+const fetchDropdownOptions = async (
   type: string,
   parentCode?: string,
   parentType?: string
@@ -38,7 +42,7 @@ export const fetchDropdownOptions = async (
   }
 };
 
-export const saveFormData = async (
+const saveFormData = async (
   processId: string,
   groupId: string,
   data: any,
@@ -75,14 +79,12 @@ export const saveFormData = async (
   }
 };
 
-// validation.ts
-export const validateField = (
+const validateField = (
   value: string,
   dataType?: string,
   pattern?: string
 ): string => {
   if (!value) return "";
-  // console.log("p=----------------- ", value,new RegExp(pattern).test(value));
   if (pattern && !new RegExp(pattern).test(value)) {
     return "This field does not match the required pattern";
   }
@@ -110,97 +112,21 @@ export const validateField = (
   return "";
 };
 
-interface FormFieldProps {
-  field: Field;
-  value: any;
-  onChange: (name: string, value: any) => void;
-  dropdownOptions?: Array<{ code: string; name: string }>;
-}
+const FormField: React.FC<any> = (props) => {
+  const { field } = props;
 
-const FormField: React.FC<FormFieldProps> = ({
-  field,
-  value,
-  onChange,
-  dropdownOptions,
-}) => {
-  const renderInput = () => {
-    switch (field.FIELD_TYPE) {
-      case "TEXT":
-        return (
-          <Input
-            value={value}
-            disabled={false}
-            className="input"
-            placeholder={field.DISPLAY_NAME}
-            onChange={(e) => onChange(field.FIELD_NAME, e.target.value)}
-          />
-        );
-
-      case "TEXTAREA":
-        return (
-          <Input.TextArea
-            rows={4}
-            className={`txtarea ${
-              field.FIELD_DATA_TYPE === "ARABIC" ? "textarea-rtl" : ""
-            }`}
-            placeholder={field.DISPLAY_NAME}
-            value={value}
-            onChange={(e) => onChange(field.FIELD_NAME, e.target.value)}
-          />
-        );
-
-      case "DROPDOWN":
-        return (
-          <Select
-            disabled={false}
-            placeholder={field.DISPLAY_NAME}
-            value={value}
-            onChange={(value) => onChange(field.FIELD_NAME, value)}
-          >
-            {dropdownOptions?.map((option) => (
-              <Select.Option key={option.code} value={option.code}>
-                {option.name}
-              </Select.Option>
-            ))}
-          </Select>
-        );
-
-      case "DATE":
-        return (
-          <DatePicker
-            value={value}
-            placeholder={field.DISPLAY_NAME}
-            format="DD-MMM-YYYY"
-            onChange={(date) => onChange(field.FIELD_NAME, date)}
-          />
-        );
-
-      default:
-        return null;
-    }
-  };
-
-  return (
-    <Form.Item
-      hidden={field.hiddenInput}
-      label={field.DISPLAY_NAME}
-      name={field.FIELD_NAME}
-      rules={[
-        field.FIELD_TYPE === "DROPDOWN"
-          ? {
-              required: field.MANDATORY === "Y",
-              message: `${field.DISPLAY_NAME} is required`,
-            }
-          : {
-              required: field.MANDATORY === "Y",
-              pattern: new RegExp(field.PATTERN as never),
-              message: `${field.DISPLAY_NAME} is required`,
-            },
-      ]}
-    >
-      {renderInput()}
-    </Form.Item>
-  );
+  switch (field.FIELD_TYPE) {
+    case "TEXT":
+      return <TextField {...props} />;
+    case "TEXTAREA":
+      return <TextAreaField {...props} />;
+    case "DROPDOWN":
+      return <DropdownField {...props} />;
+    case "DATE":
+      return <DateField {...props} />;
+    default:
+      return null;
+  }
 };
 
 const DynamicFormNew: React.FC<DynamicFormProps> = ({
