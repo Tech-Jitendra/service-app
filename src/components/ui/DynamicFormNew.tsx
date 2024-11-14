@@ -1,15 +1,10 @@
+import { Form } from "antd";
 import axios, { AxiosError } from "axios";
-import { Form, Input, Select, DatePicker } from "antd";
 import React, { useEffect, useState, useCallback } from "react";
 import FullColumnLayout from "../templates/FullColumnLayout";
 import ThreeColumnLayout from "../templates/ThreeColumnLayout";
 import TwoColumnLayout from "../templates/TwoColumnLayout";
-import {
-  DropdownData,
-  DynamicFormProps,
-  Field,
-  SubGroup,
-} from "@/types/commonTypes";
+import { DropdownData, DynamicFormProps, SubGroup } from "@/types/commonTypes";
 import { TextField } from "./formComponents/TextField";
 import { TextAreaField } from "./formComponents/TextAreaField";
 import { DropdownField } from "./formComponents/DropdownField";
