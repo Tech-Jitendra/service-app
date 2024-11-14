@@ -1,471 +1,374 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { Form, Input, Select, DatePicker } from "antd";
-import { PlusOutlined, MinusOutlined } from "@ant-design/icons";
+import React, { useEffect, useState, useCallback } from "react";
 import FullColumnLayout from "../templates/FullColumnLayout";
 import ThreeColumnLayout from "../templates/ThreeColumnLayout";
 import TwoColumnLayout from "../templates/TwoColumnLayout";
-import { DropdownData } from "@/types/commonTypes";
-const { TextArea } = Input;
-
-export async function getServerSideProps() {
-  console.log("propsss", "test");
+import {
+  DropdownData,
+  DynamicFormProps,
+  Field,
+  SubGroup,
+} from "@/types/commonTypes";
+export class ApiError extends Error {
+  constructor(message: string, public statusCode?: number) {
+    super(message);
+    this.name = "ApiError";
+  }
 }
 
-const DynamicFormNew = (props: {
-  fields: any;
-  onSubmit: any;
-  groupId: any;
-  processId: any;
-  isLastGroup: any;
-  groupRules: any;
-  subGroups: any;
-  templates: any;
-  customPagePath: any;
-  allGroupData: any;
-  UniqueNumber: any;
-  userInfo: any;
-  form: any;
-  setPrjName: any;
-  submitNovalid: any;
-  setsubmitNovalidfunc: any;
-  upDateGroupData: any;
-  nextProcessIdKey: any;
-}) => {
-  const {
-    fields,
-    onSubmit,
-    groupId,
-    processId,
-    isLastGroup,
-    groupRules,
-    subGroups,
-    templates,
-    customPagePath,
-    allGroupData,
-    UniqueNumber,
-    userInfo,
-    form,
-    setPrjName,
-    submitNovalid,
-    setsubmitNovalidfunc,
-    upDateGroupData,
-    nextProcessIdKey,
-  } = props;
-  const [formData, setFormData] = useState({});
-  const [errors, setErrors] = useState({});
-  const [dropdownData, setDropdownData] = useState({});
-  const [showPreview, setShowPreview] = useState(false);
-  const [tableData, setTableData] = useState({});
-  const [customPageData, setCustomPageData] = useState({});
-  const [tableColumn, setTableColumn] = useState([]);
-  const [uploadedFiles2, setUploadedFiles2] = useState({});
-
-  const expandIcon = ({ isActive }) =>
-    isActive ? <MinusOutlined /> : <PlusOutlined />;
-
-  const fetchDepDropdownData = async (
-    fieldName: string,
-    type: string,
-    setDropdownData: React.Dispatch<React.SetStateAction<DropdownData>>,
-    parentCode: string = "",
-    parentType: string = ""
-  ): Promise<void> => {
-    if (!type) return;
-
-    let url = `/api/common?mdl=codes&type=${type}`;
-    if (parentCode && parentType) {
-      url += `&parentCode=${parentCode}&parentType=${parentType}`;
-    }
-
-    try {
-      const response = await axios.get(url);
-      setDropdownData((prevData) => ({
-        ...prevData,
-        [fieldName]: response.data,
-      }));
-    } catch (error) {
-      console.error(`Failed to fetch dropdown data for ${fieldName}:`, error);
-    }
-  };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      for (const field of fields) {
-        const { FIELD_TYPE, FIELD_NAME, DEPENDENCY, FIELD_ID } = field;
-        if (FIELD_TYPE === "DROPDOWN") {
-          if (DEPENDENCY) {
-            const dependentField = fields.find(
-              (f) => f.FIELD_ID === DEPENDENCY
-            );
-            if (dependentField && formData[dependentField.FIELD_NAME]) {
-              await fetchDepDropdownData(
-                FIELD_NAME,
-                FIELD_NAME,
-                setDropdownData,
-                formData[dependentField.FIELD_NAME],
-                dependentField.FIELD_NAME
-              );
-            }
-          } else {
-            await fetchDepDropdownData(FIELD_NAME, FIELD_NAME, setDropdownData);
-          }
-        }
-      }
-    };
-    fetchData();
-  }, [fields, formData, setDropdownData]);
-
-  const handleSave = async (val) => {
-    // const ruleError = !customPagePath && (await executeGroupRules());
-    // if (ruleError) {
-    //   setErrors({ ...errors, rules: ruleError });
-    //   return;
-    // }
-    const data = {
-      ...formData,
-      PROJECT_CODE: UniqueNumber,
-      attachments: uploadedFiles2,
-      customPageData,
-      tableData,
-    };
-    const updatedData = { ...allGroupData, [groupId]: { ...data } };
-    let url = `/api/common?mdl=userData&groupId=${groupId}&processId=${processId}&data.PROJECT_CODE=${UniqueNumber}`;
-    let checkDataExist = await axios.get(url);
-    if (checkDataExist?.data?.length) {
-      await axios.put("/api/common", {
-        condtn: {
-          "data.PROJECT_CODE": UniqueNumber,
-          processId: parseInt(processId),
-          groupId: parseInt(groupId),
-        },
-        data,
-        mdl: "userData",
-      });
-    } else {
-      await axios.post("/api/common", {
-        processId,
-        groupId,
-        data,
-        mdl: "userData",
-      });
-    }
-
-    setFormData({}); // Clear form data for the next group
-    onSubmit(updatedData);
-  };
-
-  const handleSaveNoval = async (val) => {
-    const data = {
-      ...formData,
-      PROJECT_CODE: UniqueNumber,
-      attachments: uploadedFiles2,
-      customPageData,
-      tableData,
-    };
-    const updatedData = { ...allGroupData, [groupId]: { ...data } };
-    let url = `/api/common?mdl=userData&groupId=${groupId}&processId=${processId}&data.PROJECT_CODE=${UniqueNumber}`;
-    let checkDataExist = await axios.get(url);
-    if (checkDataExist?.data?.length) {
-      await axios.put("/api/common", {
-        condtn: {
-          "data.PROJECT_CODE": UniqueNumber,
-          processId: parseInt(processId),
-          groupId: parseInt(groupId),
-        },
-        data,
-        mdl: "userData",
-      });
-    } else {
-      await axios.post("/api/common", {
-        processId,
-        groupId,
-        data,
-        mdl: "userData",
-      });
-    }
-    setsubmitNovalidfunc(nextProcessIdKey ? true : false);
-    setFormData({}); // Clear form data for the next group
-    upDateGroupData(updatedData);
-  };
-
-  const handleEdit = (subGroupId) => {
-    setShowPreview(false);
-    onSubmit(subGroupId);
-  };
-
-  const validateField = (name, value, dataType, pattern) => {
-    let error = "";
-    if (pattern && !new RegExp(pattern).test(value)) {
-      error = "This field does not match the required pattern";
-    } else if (dataType === "ALPHA_NUMERIC" && !/^[a-zA-Z0-9]+$/.test(value)) {
-      error = "This field must be alphanumeric";
-    } else if (dataType === "NUMERIC" && !/^\d+$/.test(value)) {
-      error = "This field must be numeric";
-    } else if (
-      dataType === "ARABIC" &&
-      !/^[\u0600-\u06FF\u0750-\u077F\s]+$/.test(value)
-    ) {
-      error = "This field must contain Arabic characters";
-    }
-    return error;
-  };
-
-  const handleChange = async (e) => {
-    console.log("----------- working ------------------");
-    const { name, value } = e.target;
-    const field = fields.find((f) => f.FIELD_NAME === name);
-    const error = validateField(
-      name,
-      value,
-      field?.FIELD_DATA_TYPE,
-      field?.PATTERN
-    );
-
-    setErrors({
-      ...errors,
-      [name]: error,
-    });
-
-    const updatedFormData = {
-      ...formData,
-      [name]: value,
-    };
-
-    fields
-      ?.filter((f) => f.DEPENDENCY === field?.FIELD_ID)
-      .forEach((depField) => {
-        updatedFormData[depField.FIELD_NAME] = "";
-        setDropdownData((prevData) => ({
-          ...prevData,
-          [depField.FIELD_NAME]: [],
-        }));
-        fetchDropdownData(
-          depField?.TYPE,
-          depField?.FIELD_NAME,
-          value,
-          field?.TYPE
-        );
-      });
-    setFormData(updatedFormData);
-  };
-
-  const renderField = (field) => {
-    switch (field.FIELD_TYPE) {
-      case "TEXT":
-        return (
-          <Form.Item
-            hidden={field.hiddenInput ? true : false}
-            label={field.DISPLAY_NAME}
-            name={field.FIELD_NAME}
-            key={field.FIELD_ID}
-            rules={[
-              {
-                required: field.MANDATORY === "Y",
-                pattern: field.PATTERN,
-                message: `${field.DISPLAY_NAME} is required`,
-              },
-            ]}
-          >
-            <Input
-              disabled={false}
-              rootClassName={"input"}
-              placeholder={field.DISPLAY_NAME}
-              name={field.FIELD_NAME}
-              onChange={handleChange}
-              value={formData?.[field.FIELD_NAME]}
-            />
-          </Form.Item>
-        );
-      case "TEXTAREA":
-        return (
-          <Form.Item
-            label={field.DISPLAY_NAME}
-            name={field.FIELD_NAME}
-            key={field.FIELD_ID}
-            rules={[
-              {
-                required: field.MANDATORY === "Y",
-                pattern: field.PATTERN,
-                message: `${field.DISPLAY_NAME} is required`,
-              },
-            ]}
-          >
-            <TextArea
-              rows={4}
-              rootClassName={"txtarea"}
-              placeholder={field.DISPLAY_NAME}
-              name={field.FIELD_NAME}
-              onChange={handleChange}
-              className={
-                field.FIELD_DATA_TYPE === "ARABIC" ? "textarea-rtl" : ""
-              }
-              value={formData?.[field.FIELD_NAME]}
-            />
-          </Form.Item>
-        );
-      case "DROPDOWN":
-        return (
-          <Form.Item
-            label={field.DISPLAY_NAME}
-            name={field.FIELD_NAME}
-            key={field.FIELD_ID}
-            rules={[
-              {
-                required: field.MANDATORY === "Y",
-                message: `${field.DISPLAY_NAME} is required`,
-              },
-            ]}
-          >
-            <Select
-              disabled={false}
-              placeholder={field.DISPLAY_NAME}
-              value={formData[field.FIELD_NAME] ?? undefined}
-              onChange={(value) =>
-                handleDropdownChange(field.FIELD_NAME, value)
-              }
-            >
-              {dropdownData[field.FIELD_NAME]?.map((option, index) => (
-                <Select.Option key={index} value={option.code}>
-                  {option.name}
-                </Select.Option>
-              ))}
-            </Select>
-          </Form.Item>
-        );
-      case "DATE":
-        return (
-          <Form.Item
-            label={field.DISPLAY_NAME}
-            name={field.FIELD_NAME}
-            key={field.FIELD_ID}
-            rules={[
-              {
-                required: field.MANDATORY === "Y",
-                message: `${field.DISPLAY_NAME} is required`,
-              },
-            ]}
-          >
-            <DatePicker
-              value={formData?.[field.FIELD_NAME]}
-              placeholder={field.DISPLAY_NAME}
-              name={field.FIELD_NAME}
-              format={"DD-MMM-YYYY"}
-              onChange={(e, vl) =>
-                handleChange({ name: field.FIELD_NAME, value: e })
-              }
-            />
-          </Form.Item>
-        );
-      default:
-        return null;
-    }
-  };
-
-  const fetchDropdownData = async (
-    type,
-    fieldName,
-    parentCode = "",
-    parentType = ""
-  ) => {
+export const fetchDropdownOptions = async (
+  type: string,
+  parentCode?: string,
+  parentType?: string
+): Promise<Array<{ code: string; name: string }>> => {
+  try {
     let url = `/api/common?mdl=codes&type=${type}`;
     if (parentCode && parentType) {
       url += `&parentCode=${parentCode}&parentType=${parentType}`;
     }
     const response = await axios.get(url);
-    setDropdownData((prevData) => ({
-      ...prevData,
-      [fieldName]: response.data,
-    }));
+    return response.data;
+  } catch (error) {
+    const axiosError = error as AxiosError;
+    throw new ApiError(
+      `Failed to fetch dropdown data: ${axiosError.message}`,
+      axiosError.response?.status
+    );
+  }
+};
+
+export const saveFormData = async (
+  processId: string,
+  groupId: string,
+  data: any,
+  UniqueNumber: string
+): Promise<void> => {
+  try {
+    const url = `/api/common?mdl=userData&groupId=${groupId}&processId=${processId}&data.PROJECT_CODE=${UniqueNumber}`;
+    const existingData = await axios.get(url);
+
+    if (existingData?.data?.length) {
+      await axios.put("/api/common", {
+        condtn: {
+          "data.PROJECT_CODE": UniqueNumber,
+          processId: parseInt(processId),
+          groupId: parseInt(groupId),
+        },
+        data,
+        mdl: "userData",
+      });
+    } else {
+      await axios.post("/api/common", {
+        processId,
+        groupId,
+        data,
+        mdl: "userData",
+      });
+    }
+  } catch (error) {
+    const axiosError = error as AxiosError;
+    throw new ApiError(
+      `Failed to save form data: ${axiosError.message}`,
+      axiosError.response?.status
+    );
+  }
+};
+
+// validation.ts
+export const validateField = (
+  value: string,
+  dataType?: string,
+  pattern?: string
+): string => {
+  if (!value) return "";
+  // console.log("p=----------------- ", value,new RegExp(pattern).test(value));
+  if (pattern && !new RegExp(pattern).test(value)) {
+    return "This field does not match the required pattern";
+  }
+
+  const validations: Record<string, { regex: RegExp; message: string }> = {
+    ALPHA_NUMERIC: {
+      regex: /^[a-zA-Z0-9]+$/,
+      message: "This field must be alphanumeric",
+    },
+    NUMERIC: {
+      regex: /^\d+$/,
+      message: "This field must be numeric",
+    },
+    ARABIC: {
+      regex: /^[\u0600-\u06FF\u0750-\u077F\s]+$/,
+      message: "This field must contain Arabic characters",
+    },
   };
 
-  const handleDropdownChange = async (
-    name: string,
-    value: string | number | boolean | any
-  ): Promise<void> => {
-    const field = fields.find((f) => f.FIELD_NAME === name);
-    if (!field) {
-      console.error(`Field not found for ${name}`);
-      return;
+  const validation = validations[dataType || ""];
+  if (validation && !validation.regex.test(value)) {
+    return validation.message;
+  }
+
+  return "";
+};
+
+interface FormFieldProps {
+  field: Field;
+  value: any;
+  onChange: (name: string, value: any) => void;
+  dropdownOptions?: Array<{ code: string; name: string }>;
+}
+
+const FormField: React.FC<FormFieldProps> = ({
+  field,
+  value,
+  onChange,
+  dropdownOptions,
+}) => {
+  const renderInput = () => {
+    switch (field.FIELD_TYPE) {
+      case "TEXT":
+        return (
+          <Input
+            value={value}
+            disabled={false}
+            className="input"
+            placeholder={field.DISPLAY_NAME}
+            onChange={(e) => onChange(field.FIELD_NAME, e.target.value)}
+          />
+        );
+
+      case "TEXTAREA":
+        return (
+          <Input.TextArea
+            rows={4}
+            className={`txtarea ${
+              field.FIELD_DATA_TYPE === "ARABIC" ? "textarea-rtl" : ""
+            }`}
+            placeholder={field.DISPLAY_NAME}
+            value={value}
+            onChange={(e) => onChange(field.FIELD_NAME, e.target.value)}
+          />
+        );
+
+      case "DROPDOWN":
+        return (
+          <Select
+            disabled={false}
+            placeholder={field.DISPLAY_NAME}
+            value={value}
+            onChange={(value) => onChange(field.FIELD_NAME, value)}
+          >
+            {dropdownOptions?.map((option) => (
+              <Select.Option key={option.code} value={option.code}>
+                {option.name}
+              </Select.Option>
+            ))}
+          </Select>
+        );
+
+      case "DATE":
+        return (
+          <DatePicker
+            value={value}
+            placeholder={field.DISPLAY_NAME}
+            format="DD-MMM-YYYY"
+            onChange={(date) => onChange(field.FIELD_NAME, date)}
+          />
+        );
+
+      default:
+        return null;
     }
-    const updatedFormData = {
-      ...formData,
-      [name]: value,
-    };
-    const dependentFields = fields.filter(
-      (f) => f.DEPENDENCY === field.FIELD_ID
-    );
-    for (const depField of dependentFields) {
-      updatedFormData[depField.FIELD_NAME as keyof typeof updatedFormData] = "";
-      setDropdownData((prevData: DropdownData) => ({
-        ...prevData,
-        [depField.FIELD_NAME]: [],
-      }));
-      try {
-        await fetchDropdownData(
-          depField.TYPE,
-          depField.FIELD_NAME,
-          value,
-          field.TYPE
-        );
-      } catch (error) {
-        console.error(
-          `Error fetching dropdown data for ${depField.FIELD_NAME}:`,
-          error
-        );
+  };
+
+  return (
+    <Form.Item
+      hidden={field.hiddenInput}
+      label={field.DISPLAY_NAME}
+      name={field.FIELD_NAME}
+      rules={[
+        field.FIELD_TYPE === "DROPDOWN"
+          ? {
+              required: field.MANDATORY === "Y",
+              message: `${field.DISPLAY_NAME} is required`,
+            }
+          : {
+              required: field.MANDATORY === "Y",
+              pattern: new RegExp(field.PATTERN as never),
+              message: `${field.DISPLAY_NAME} is required`,
+            },
+      ]}
+    >
+      {renderInput()}
+    </Form.Item>
+  );
+};
+
+const DynamicFormNew: React.FC<DynamicFormProps> = ({
+  fields,
+  onSubmit,
+  groupId,
+  processId,
+  subGroups,
+  templates,
+  UniqueNumber,
+  form,
+  setsubmitNovalidfunc,
+  upDateGroupData,
+  nextProcessIdKey,
+  // ... other props
+}) => {
+  const [formData, setFormData] = useState<Record<string, any>>({});
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [dropdownData, setDropdownData] = useState<DropdownData>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleFieldChange = useCallback(
+    async (name: string, value: any, PATTERN: string) => {
+      const field = fields.find((f) => f.FIELD_NAME === name);
+      if (!field) return;
+      if (field.FIELD_DATA_TYPE !== "DROPDOWN") {
+        const error = validateField(value, field.FIELD_DATA_TYPE, PATTERN);
+        setErrors((prev) => ({ ...prev, [name]: error }));
       }
+      const updatedData = { ...formData, [name]: value };
+      const dependentFields = fields.filter(
+        (f) => f.DEPENDENCY === field.FIELD_ID
+      );
+      for (const depField of dependentFields) {
+        updatedData[depField.FIELD_NAME] = "";
+        try {
+          const options = await fetchDropdownOptions(
+            depField.FIELD_NAME || "",
+            value,
+            field.FIELD_NAME
+          );
+          setDropdownData((prev) => ({
+            ...prev,
+            [depField.FIELD_NAME]: options,
+          }));
+        } catch (error) {
+          const apiError = error as ApiError;
+          setErrors((prev) => ({
+            ...prev,
+            [depField.FIELD_NAME]: apiError.message,
+          }));
+        }
+      }
+
+      setFormData(updatedData);
+    },
+    [fields, formData]
+  );
+
+  const handleSubmit = async (values: any) => {
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+
+    try {
+      const data = {
+        ...formData,
+        PROJECT_CODE: UniqueNumber,
+      };
+
+      await saveFormData(processId, groupId, data, UniqueNumber);
+
+      const updatedAllData = { ...values, [groupId]: { ...data } };
+      setFormData({});
+      onSubmit(updatedAllData);
+
+      if (nextProcessIdKey) {
+        setsubmitNovalidfunc(true);
+        upDateGroupData(updatedAllData);
+      }
+    } catch (error) {
+      const apiError = error as ApiError;
+      setErrors((prev) => ({
+        ...prev,
+        submit: apiError.message,
+      }));
+    } finally {
+      setIsSubmitting(false);
     }
-    setFormData(updatedFormData);
+  };
+
+  useEffect(() => {
+    const loadDropdownData = async () => {
+      const dropdownFields = fields.filter(
+        (f) => f.FIELD_TYPE === "DROPDOWN" && !f.DEPENDENCY
+      );
+
+      for (const field of dropdownFields) {
+        try {
+          const options = await fetchDropdownOptions(field.FIELD_NAME || "");
+          setDropdownData((prev) => ({
+            ...prev,
+            [field.FIELD_NAME]: options,
+          }));
+        } catch (error) {
+          const apiError = error as ApiError;
+          setErrors((prev) => ({
+            ...prev,
+            [field.FIELD_NAME]: apiError.message,
+          }));
+        }
+      }
+    };
+
+    loadDropdownData();
+  }, [fields]);
+
+  const renderSubGroup = (subGroup: SubGroup) => {
+    const subGroupFields = fields.filter(
+      (field) => field.SUBGROUP === subGroup.SUB_GROUP_ID
+    );
+
+    const template = templates.find((t) => t.TEMPLATE_ID === subGroup.TEMPLATE);
+    const Layout =
+      template?.TEMPLATE_ID === 3
+        ? FullColumnLayout
+        : template?.TEMPLATE_ID === 2
+        ? ThreeColumnLayout
+        : TwoColumnLayout;
+
+    return (
+      <div key={subGroup.SUB_GROUP_ID}>
+        {subGroup.ShowHeader && (
+          <h3 className="in-progress top-gap-12">{subGroup.SUB_GROUP_NAME}</h3>
+        )}
+        {!subGroup.TABLE && (
+          <Layout
+            field={subGroupFields.map((field) => (
+              <FormField
+                key={field.FIELD_ID}
+                field={field}
+                value={formData[field.FIELD_NAME]}
+                onChange={handleFieldChange}
+                dropdownOptions={dropdownData[field.FIELD_NAME]}
+              />
+            ))}
+          />
+        )}
+      </div>
+    );
   };
 
   return (
     <Form
       layout="vertical"
       name={`Prjform${groupId}`}
-      onFinish={(values) => handleSave(values)}
+      onFinish={handleSubmit}
       form={form}
-      onFinishFailed={(err) => {
-        console.log("err", err);
+      onFinishFailed={(errorInfo) => {
+        console.error("Form validation failed:", errorInfo);
+        setErrors((prev) => ({
+          ...prev,
+          form: "Please fix the validation errors before submitting",
+        }));
       }}
     >
-      {subGroups.map((subGroup) => {
-        const templateData = templates.find(
-          (t) => t.TEMPLATE_ID === subGroup.TEMPLATE
-        )?.TEMPLATE_ID;
-        return (
-          <div key={subGroup.SUB_GROUP_ID}>
-            {subGroup?.ShowHeader && (
-              <h3 className="in-progress top-gap-12">
-                {subGroup.SUB_GROUP_NAME}
-              </h3>
-            )}
-            {templateData === 3 && !subGroup.hasOwnProperty("TABLE") ? (
-              <FullColumnLayout
-                field={fields
-                  ?.filter((field) => field.SUBGROUP === subGroup.SUB_GROUP_ID)
-                  .map(renderField)}
-              />
-            ) : templateData === 2 && !subGroup.hasOwnProperty("TABLE") ? (
-              <ThreeColumnLayout
-                field={fields
-                  ?.filter((field) => field.SUBGROUP === subGroup.SUB_GROUP_ID)
-                  .map(renderField)}
-              />
-            ) : (
-              !subGroup.hasOwnProperty("TABLE") && (
-                <TwoColumnLayout
-                  field={fields
-                    ?.filter(
-                      (field) => field.SUBGROUP === subGroup.SUB_GROUP_ID
-                    )
-                    .map(renderField)}
-                />
-              )
-            )}
-          </div>
-        );
-      })}
-      {/* {errors.rules ? <p className="c_red">{errors.rules}</p> : ""} */}
+      {subGroups.map(renderSubGroup)}
+      {errors.submit && <div className="error-message">{errors.submit}</div>}
+      {errors.form && <div className="error-message">{errors.form}</div>}
     </Form>
   );
 };
