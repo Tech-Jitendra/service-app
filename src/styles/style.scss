@@ -1,0 +1,783 @@
+@import "./color_variable.scss";
+@import "./cmn_button.scss";
+@import "./font_variable.scss";
+@import 'animate.css';
+/****************** Custom Font Start *****************/
+// @font-face {
+//   font-family: 'RTA-Black'; 
+//    src: url('../Font/RTA-Black.ttf') format('truetype'),url('../Font/RTA-Black.woff');
+//   //src: url('/_next/static/fonts/RTA-Black.ttf') format('truetype');
+// }
+// @font-face {
+//   font-family: 'RTA-Light'; 
+//   src:url('../Font/RTA-Light.ttf') format('truetype'),url('../Font/RTA-Light.woff');
+//  // src:  url('/_next/static/fonts/RTA-Light.ttf') format('truetype');
+// }
+// @font-face {
+//   font-family: 'RTA-Regular';
+//   src:url('../Font/RTA-Regular.ttf') format('truetype'),url('../Font/RTA-Regular.woff');
+//   //src:  url('/_next/static/fonts/RTA-Regular.ttf') format('truetype');
+// }
+/****************** Custom Font End *****************/
+body{
+    margin: 0;
+    padding: 0;
+    font-family:'RTA-Regular';
+    background: #eeeeee;
+    color: #1A1A1A;
+    
+}
+h1,h2,h3,h4,h5,h6,p,li,div,label,strong,span{
+  font-family:'RTA-Regular' !important;
+    margin: 0;
+    font-weight: normal;
+}
+.spc_control {
+  margin: 50px 30px 30px 40px;
+}
+.label-data {
+  color: #1A1A1A;
+}
+.label-head {
+  color: var(--text-color-secondary);
+  font-family: 'RTA-Light' !important; 
+}
+.grouping {
+  margin-bottom: 6px;
+}
+.bold-font{
+   font-weight: bold;
+}
+main.ant-layout-content {
+  padding: 0 !important;
+}
+/********************************* Common style for spacing and alignment Starts *****************************/
+.flex-class {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .d-flex {
+    display: flex;
+  }
+  .flex-align {
+    display: flex;
+    align-items: center;
+  }
+  .text-center {
+    text-align: center;
+  }
+  .text-center-reject {
+    text-align: center;
+    color: red;
+  }
+  .text-right {
+    text-align: right;
+  }
+  .top-gap-12 {
+    padding-top: 12px;
+  }
+  .mar-top-12 {
+    margin-top: 12px;
+  }
+  .full-width {
+    width: 100%;
+  }
+  .bottom-border {
+    border-bottom: 1px solid #ddd;
+    margin-top: 12px;
+  }
+  .p-15 {
+    padding: 15px !important;
+  }
+  .p-30 {
+    padding: 30px !important;
+  }
+  .p-25 {
+    padding: 25px !important;
+  }
+  .p-20{padding: 20px !important;}
+  body .padding_0 {
+    padding: 0px !important;
+  }
+  body .padding_right {
+    padding-right: 0px !important;
+  }
+  body .padding_left {
+    padding-left: 0px !important;
+  }
+  body .margin_0 {
+    margin: 0px !important;
+  }
+  body .padding_top_15 {
+    padding-top: 15px !important;
+  }
+  body .margin_bott_15 {
+    margin-bottom: 15px !important;
+  }
+  body .margin_left_15 {
+    margin-left: 15px !important;
+  }
+  body .margin_right_15 {
+    margin-right: 15px !important;
+  }
+  body .padding_left_15 {
+    padding-left: 15px !important;
+  }
+  body .padding_top10_left_15 {
+    padding: 10px 15px !important;
+  }
+  body .padding_right_15 {
+    padding-right: 15px !important;
+  }
+  body .padding_top_0 {
+    padding-top: 0px !important;
+  }
+  .rectangle {
+    background: #ffffff1f;
+    padding: 8px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.circle {
+  height: 15px;
+  width: 15px;
+  background: var(--border-color);
+  border-radius: 50%;
+  margin-right: 10px;
+}
+  /********************************* Common style for spacing and alignment Starts *****************************/
+  /******************************* Header and Side Navigation CSS start ***********************************/
+  header {
+    box-shadow: 0px 1px 6px #00000029;
+    padding: 10px 25px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    z-index: 999;
+    .flex-align{
+        justify-content: space-between;
+        img{
+            max-height: 80px;
+        }
+        .logo_2{width:auto !important;}
+    }
+}
+.side-menu{
+    position: fixed;
+    background: var(--parimary-color);
+    height: 100%;
+    width: 100px;
+    left: 0;
+    // top: 99px;
+    transition: all 0.8s;
+    z-index: 999;
+    .prof_sec{
+        padding-top: 30px;
+        padding-left: 10px;
+        padding-bottom: 15px;
+        h6,p{display: none;}
+        img{
+            height: 70px;
+            width: 70px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+        }
+    }
+    .menu_sec{
+        margin-top: 20px;
+        padding-left: 25px;
+        
+        h6{display: none;}
+        .rectangle svg{
+            position: relative;
+            height: 25px;
+            top: 2px;
+        }
+        .rectangle.active {
+            background: var(--menu-color);
+        }
+    }
+    .sidemenu_dropdown .ant-select-selector {
+      margin-left: 17px;
+      height: 40px !important;
+      margin-top: 7px;
+      background:var( --btn-hover) !important;
+      border: 0 !important;
+      color: #fff !important;
+      width: 160px;
+      span.ant-select-selection-item {
+        color: #fff !important;
+    }
+      span.ant-select-arrow {
+        right: 0 !IMPORTANT;
+    }
+    
+  }
+  span.ant-select-arrow svg path {
+    fill: #fff;
+}
+}
+.side-menu:hover {
+    width: 300px;
+    transition: all 0.8s;
+    .prof_sec h6,  .prof_sec p,.menu_sec h6{
+        padding-left: 20px;
+        color: #fff;
+        display: block;
+    }
+    .sidemenu_dropdown{opacity: 1;}
+}
+.sidemenu_dropdown{opacity: 0;}
+/******************************************** Comn Stepper CSS start ***************************/
+.cmn_stepper {
+  background-color: #fff;
+  position: fixed;
+  width: 15%;
+  height: 100%;
+  // top: 100px;
+  z-index: 1;
+  left: 101px;
+  padding: 20px;
+  box-shadow: 0px 0px 6px #c0baba;
+ 
+  &:after{
+    content: "";
+    background-image: url(/_next/static/media/stepbtom_img.8d374dd1.png);
+    position: absolute;
+    left: 0;
+    width: 150px;
+    height: 162px;
+    bottom: 106px;
+    background-repeat: no-repeat;
+    right: 0;
+    margin: auto;
+    z-index: -1;
+  }
+  .each_step {
+    border: 1px solid var(--border-color);
+    margin-bottom: 8px;
+    padding: 8px 15px;
+    border-radius: 6px;
+    align-items: center;
+    // font-weight: 600;
+    color: var( --text-color-secondary);
+    position: relative;
+    background: #fff;
+}
+
+.each_step.in-progress .circle{
+  background: var(--parimary-color);
+}
+.each_step.in-progress{
+  color: var(--parimary-color);
+  border: 1px dashed var(--parimary-color);
+}
+.each_step.completed {
+  color: $green;
+  border: 1px solid $green;
+}
+.each_step.completed .circle{
+  background: $green;
+}
+.each_step:before {
+  content: "";
+  height: 25px;
+  width: 2px;
+  background: var(--border-color);
+  position: absolute;
+  left: 21px;
+  top: 28px;
+  z-index: 9;
+}
+.cmn_stepper .each_step.completed:before {
+  background: $green;
+}
+span.ant-progress-text {
+  position: absolute;
+  left: -8px;
+  top: -17px;
+  font-family: 'RTA-Black' !important;
+  font-size: 22px;
+  color: var(--parimary-color);
+}
+.prog-bar {
+  margin-top: 20px;
+  p{
+    font-size: 14px !important;
+    margin-bottom: 15px;
+    font-style: italic;
+  }
+  .ant-progress-bg {
+    height: 5px ! IMPORTANT;
+    background: $green !important;
+}
+.ant-progress-outer {
+  padding: 0 !IMPORTANT;
+}
+}
+}
+.each_step.d-flex:last-child:before {
+  display: none ! IMPORTANT;
+}
+/************************ Comn sterps CSS end ************************/
+/*********************** Breadcrumb CSS start ************************/
+.breadcrumb {
+  background-color: #fff;
+  position: fixed;
+  left: 22.4%;
+  // top: 101px;
+  width: 100%;
+  padding: 10px 15px;
+  z-index: 99;
+ 
+  box-shadow: 1px 1px 6px #d6d6d6;
+  ul{
+    padding-left: 0;
+    list-style: none;
+    margin: 0;
+    display: flex;
+    li {
+      margin-right: 5px;
+      color: var(--text-color-secondary);
+      font-size: 13px !important;
+      a{
+        color: #000;
+      }
+    }
+   
+  }
+}
+
+.breadcrumb ul li a:after {
+  content: ">";
+  color: #797878;
+}
+/*************************** Breadcrumb CSS end *********************/
+/******************************* Comn Tab styleing CSS Start *****************/
+.ant-tabs{
+  .ant-tabs-tab:before {
+    content: "";
+    height: 15px;
+    width: 15px;
+    background:var(--border-color);
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+  .ant-tabs-tab-btn {
+    color: var(--text-color-secondary) ;
+}
+.ant-tabs-tab.ant-tabs-tab-active:before,.ant-tabs-ink-bar {
+  background: var( --secondary-color);
+}
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
+  color: var(--secondary-color);
+}
+.ant-tabs-tab {
+  padding-top: 0 !important;
+}
+.ant-tabs-nav:before {
+  border-color: var(--border-color) !important;
+}
+}
+
+/******************************* Comn Tab styleing CSS End *****************/
+/*********************Main Content CSS and Media qury CSS start *********************/
+@media(min-width:1200px){
+  .left_menu{
+      flex: 6%;
+      max-width: 6%;
+  }
+  .main_cont{
+      flex: 94%;
+      max-width: 94%;
+      // margin-top: 115px;
+  }
+}
+.content_sec {
+  margin-top: 35px;
+  margin-left: 27px;
+  margin-right: 15px;
+  .cmn_tit{
+    margin-bottom: 10px;
+  }
+}
+.white-card{
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #CBCCCE;
+  box-shadow: 0px 3px 4px #0000000D;
+}
+/*********************Main Content CSS and Media qury CSS End *********************/
+/************************** Cmn Form CSS start **********************/
+.c_red {
+  color: red;
+}
+#Prjform5 h3 {
+  margin-top: 15px;
+}
+.form-group {
+ 
+  label {
+    display: block;
+    color: #000000;
+    // font-weight: 600;
+  }
+}
+.input, .ant-select, .ant-table-cell input.ant-input,  .ant-table-cell .ant-select {
+  height: 46px !important;
+}
+.input, .ant-select, .ant-table-cell input.ant-input,  .ant-table-cell .ant-select,textarea.ant-input {
+  width: 100% !important;
+ 
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  border-color: var(--border-color) !important;
+  &:focus,&:hover{
+    border-color: var(--parimary-color) !important;
+  }
+}
+.ant-select-open .ant-select-selector{
+  border-color: var(--parimary-color) !important;
+
+}
+body .ant-select .ant-select-selector:hover,body textarea:hover,body textarea:focus{
+  border-color: var(--parimary-color) !important;
+}
+textarea.ant-input {
+  resize: vertical !important;
+}
+.ant-form-item {
+  margin-bottom: 12px;
+}
+span.ant-select-selection-item {
+  font-size: 14px !important;
+  font-weight: normal !important;
+}
+.ant-col {
+  padding-bottom: 0 !important;
+}
+/******************************** Comn Button css start ***********************************/
+.cmn_btn{
+  padding: 15px 0px;
+  .d-flex{justify-content: right;}
+  span.rectangle{
+    padding: 2px;
+    svg{
+      max-height: 12px;
+      position: relative;
+      top: 2px;
+    }
+  }
+  .ant-btn{
+    width:225px;
+    margin-left: 15px;
+  }
+  .ant-btn.img-btn-transparent .rectangle{
+    background: var(--parimary-color) !important;
+  }
+  .ant-btn.img-btn-filled .rectangle{
+    background:#fff !important;
+    svg{
+      transform: rotate(180deg);
+      path{
+        fill:var(--parimary-color) !important;
+      }
+    }
+  }
+  .ant-btn.img-btn-filled-sbmt .rectangle{
+    background:#fff !important;
+    svg{
+      path{
+        fill:var(--parimary-color) !important;
+      }
+    }
+  }
+}
+/******************************** Comn Button css End ***********************************/
+/******************************** Comn Table css start ***********************************/
+.ant-table {
+  
+  table{
+    border: 1px solid var(--border-color) !important;
+    tr{
+      th{
+        background: #53565A !important;
+        color: #fff !important;
+        border: 0 !important;
+        padding:6px 15px ! IMPORTANT;
+        font-weight: normal !important;
+      }
+      :before{
+        display: none !important;
+      }
+     
+    }
+    tr{
+      td{
+        padding:6px  15px ! IMPORTANT;
+        border: none !important;
+       font-weight: normal;
+      }
+    }
+  }
+ 
+  tr:nth-child(even) {background-color: $tableevencolor !important;}
+  tr:nth-child(odd) {background-color: #fff !important;}
+  tr:hover{
+    background: transparent !important;
+      box-shadow: 0px 0px 7px #e6e5e5;
+    }
+    th.ant-table-cell:first-child, th.ant-table-cell:last-child {
+      border-radius: 0 !important;
+  }
+}
+.ant-pagination-item-active a {
+  background: var(--parimary-color) !important;
+  border-color:var(--parimary-color) !important ;
+  color: #fff !important;
+}
+
+/******************************** Comn Table css end ***********************************/
+/****************************** Collapse styling Start ************************/
+.cmn_collapse{
+  .ant-collapse {
+    border-radius: 0;
+    border: 0;
+    background: transparent;
+  }
+  .ant-collapse-item {
+    background: #fff;
+    margin-bottom: 12px;
+    border: 1px solid #CBCCCE !important;
+    border-radius: 8px !important;
+   
+  }
+  .ant-collapse-content {
+    border: 0 !important;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+  .ant-collapse-header {
+    box-shadow: 0px 3px 6px #00000029;
+    padding-left: 30px ! IMPORTANT;
+    span.ant-collapse-header-text {
+      // font-weight: 600;
+  }
+  .ant-collapse-expand-icon {
+    position: absolute;
+    right: 0;
+}
+}
+}
+/****************************** Collapse styling Start ************************/
+.project_info {
+  margin: 50px 30px 30px 100px;
+}
+.side-menu:hover .submenu-item{
+  display: block;
+  }
+.side-menu .submenu-item{
+display: none;
+}
+
+/******************** Login screen css start *****************/
+.login-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  // background-image: url(../../public/Images/login_mask.png);
+  background-color: #f0f4f8;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+ 
+.login-container {
+  display: flex;
+  flex: 1;
+ 
+  .content {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+    h1 {
+      margin: 0;
+      line-height: 38px;
+      margin-bottom: 40px;
+    }
+    p {
+      color: #6f7a8a;
+      line-height: 23px;
+      width: 400px;
+      margin: auto;
+    }
+    img {
+      margin-top: 20px;
+    }
+  }
+  .login-form {
+    background: #fff;
+    width: 500px;
+    padding: 40px 50px;
+    border-radius: 20px;
+    box-shadow: 0px 1px 15px #219c903b;
+    .logo_img {
+      text-align: center;
+      img {
+        // width: 180px;
+        // height: 180px;
+      }
+    }
+    h2 {
+      color: var(--secondaryColor);
+      margin-bottom: 40px;
+      margin-top: 30px;
+    }
+    .ant-btn {
+      width: 100% !important;
+      margin-top: 8px;
+    }
+    .input-container {
+      margin-bottom: 15px;
+      text-align: left;
+      position: relative;
+      svg {
+        position: absolute;
+        left: 13px;
+        z-index: 9;
+        top: 40px;
+      }
+      .ant-input {
+        padding-left: 40px !important;
+        margin-top: 10px;
+      }
+    }
+ 
+    .input-container label {
+      display: block;
+      font-size: 14px;
+      color: #333;
+    }
+ 
+    .remember-me {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+ 
+    .forgot-password {
+      text-decoration: underline;
+      color: var(--primaryColor);
+      font-size: var(--font14);
+    }
+  }
+}
+ 
+.login-left,
+.login-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.copy_right {
+  position: absolute;
+  bottom: 32px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #1a2638;
+  font-weight: 600;
+  font-size: 14px;
+}
+// .csttbl{
+// /* CustomTable.css */
+// .ant-table-tbody > tr > td {
+//   white-space: normal !important;
+//   word-wrap: break-word;
+// }
+
+// .ant-table-row {
+//   height: auto !important;
+// }
+
+// .ant-table-cell {
+//   height: auto !important;
+//   padding: 8px; /* Adjust padding as needed */
+// }
+// }
+
+// td.ant-table-cell .ant-input.txtarea {
+//   height: auto !important;
+// }
+.hdrclr{
+  background: #53565A;
+    padding: 11px 21px;
+    margin-left: 0px;
+    border-radius: 6px;
+    justify-content: space-between;
+    color: #fff;
+}
+.btnmrg, .btnmrgclr{
+  margin: 10px !important;
+}
+.btnmrgclr{
+  background-color: var( --parimary-color) !important;;
+  color: #fff;
+}
+.drafttbl{
+  tbody > tr {
+    height: 50px !important;
+  }
+
+  .icn {
+    cursor: pointer;
+    margin: 10px;
+    font-size: 24px;
+  }
+  .clrpri{
+    color: var(--parimary-color);
+  }
+  .dngr{
+    color: var(--secondary-color);
+  }
+}
+
+.dspflex{
+  display: flex;
+  align-items:center;
+  .cstmAI, .cstmAI:hover{
+    
+    height: 50px !important;
+    background-color: var(--parimary-color) !important;
+    color:  #fff !important;
+    padding-left: 25px !important;
+    border: 2px solid var(--parimary-color) !important;
+   span{
+    font-weight: 600 !important;
+   }
+  }
+
+  .imgAI{
+    color: transparent;
+      width: 65px;
+      height: 65px;
+      margin-left: auto;
+      position: relative;
+      left: 25px;
+      z-index: 1;
+      border: 2px solid var(--parimary-color);
+      border-radius: 50px;
+  }
+}
+.cttrns{
+  svg{
+    transform: rotate(360deg) !important;
+  }
+}
+.algnend{
+  align-items: flex-end !important;
+}

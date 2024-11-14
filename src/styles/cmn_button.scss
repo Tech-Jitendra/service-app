@@ -1,0 +1,91 @@
+/******************* Common Button styling start ***************/
+$btnpadd:10px 15px !important;
+$br_radius:8px !important;
+$btn-font: 16px;
+$btn-font-md: 14px;
+$btnpadd-mid:8px 12px;
+
+@mixin common_button(){
+    box-shadow: none !important;
+    border-radius:$br_radius;
+    font-size: $btn-font;    
+    height: auto !important;
+    padding:$btnpadd;
+    text-align: center;
+    font-weight: bold !important;
+   
+    @media (min-width:1200px) and (max-width:1690px) {
+        padding:$btnpadd-mid;
+        font-size: $btn-font-md;
+    }
+    
+}
+.ant-btn{
+    @include common_button();
+    
+}
+.btn-transparent{
+    @include common_button();
+    background-color:#fff !important;
+    color:  var( --parimary-color) !important;
+    border: 1px solid  var( --parimary-color) !important;
+    :hover{
+        background-color:#fff !important;
+    }
+}
+.blu-btn{
+    @include common_button();
+    background-color: var( --parimary-color) !important;
+    border:1px solid  var( --parimary-color) !important;
+    color:#fff !important; 
+    &:hover{
+      background-color:  var(  --btn-hover) !important;
+    }
+}
+body .img-btn-filled, .img-btn-filled-sbmt{   
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var( --parimary-color) !important;
+    color: #fff !important;
+    border-color:var( --parimary-color) !important;
+    &:hover{
+      background-color:var(--btn-hover) !important;
+      border-color:var(--btn-hover) !important;
+    }
+    &:focus,&:visited{
+        background-color: var( --btn-pressed) !important;
+        border-color:var(--btn-hover) !important;
+    }
+    svg{
+        width: 22px;
+        height: 22px;
+        margin-right: 0px;
+        fill:#fff;
+        @media only screen and (min-width: 1900px){
+            width: 28px;
+            height: 28px;
+        }
+    }
+}
+body .img-btn-transparent{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff !important;
+    color: var( --parimary-color) !important;
+    border-color:var( --parimary-color) !important;
+    &:hover{
+      background-color:transparent !important;
+    }
+    svg{
+        width: 22px;
+        height: 22px;
+        margin-right: 0px;
+        fill:#fff;
+        @media only screen and (min-width: 1900px){
+            width: 28px;
+            height: 28px;
+        }
+    }
+}

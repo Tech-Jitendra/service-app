@@ -1,0 +1,50 @@
+// @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+/************* font size variable *****************/
+
+/************ large 1920 screen font size **************/
+@media only screen and (min-width: 1700px) {
+    h1{font-size: 30px !important;}
+    h2{
+        font-size: 24px !important;
+    }
+    h3{
+        font-size: 20px !important;
+    }
+    h4,p,h5,h6,div{
+        font-size: 16px !important;
+        font-weight: 400;
+    }
+   
+}
+/************ large 1920 screen font size - Ends **************/
+
+/************  Medium screen font size **************/
+@media (min-width:1200px) and (max-width:1690px) {
+    h1{font-size: 28px !important;}
+    h2{
+        font-size: 20px !important;
+    }
+    h3{
+        font-size: 18px !important;
+    }
+    h4,p,h5,h6,div{
+        font-size: 14px !important;
+        font-weight: 400;
+    }
+}
+/************ medium screen font size - Ends **************/
+/************  Mobile and Ipad screen font size **************/
+@media (min-width:340px) and (max-width:1199px) {
+    h1{font-size: 24px !important;}
+    h2{
+        font-size: 16px !important;
+    }
+    h3{
+        font-size: 14px !important;
+    }
+    h4,p,h5,h6,div{
+        font-size: 12px !important;
+        font-weight: 400;
+    }
+}
+/************  Mobile and Ipad screen font size Ends **************/

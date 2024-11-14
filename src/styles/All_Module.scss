@@ -1,0 +1,1189 @@
+@import "./color_variable.scss";
+@import "./cmn_button.scss";
+@import "./font_variable.scss";
+/************************* Landing Page CSS start ********************/
+.seacrh_sec{
+  justify-content: right;
+  .ant-input,.ant-select{
+      width: 320px !important;
+      height: 49px;
+  }
+  .ant-select{margin:0px 10px;}
+  .ant-btn{
+    margin-left: 10px !important;
+      .circle {
+          height: 25px;
+          width: 25px;
+          background: #fff;
+          border-radius: 50%;
+          margin-right: 0;
+          margin-left: 10px;
+          color: var(--parimary-color);
+          font-size: 24px;
+          line-height: 31px;
+      }
+  }
+}
+.landing_page {
+    padding: 15px 25px 20px 15px;
+    .tit_sec {
+        margin-bottom: 25px;
+        h4{color: var( --text-color-secondary);}
+    }
+  
+    .landing_each_box{
+        cursor: pointer;
+        h4{
+          // width: 156px;
+    margin: auto;
+        }
+        svg{margin-bottom: 15px;
+          height: 50px;
+        }
+        
+        h2{
+            font-size: 34px !important;
+            margin-top: 10px;
+            color: var(--parimary-color);
+        }
+    }
+}
+
+/************************* Landing Page CSS End ********************/
+/************************ Upload file CSS start *******************/
+.up_file_outer{
+    margin-top: 20px;
+    background: #eee;
+padding: 15px;
+border-radius: 12px;
+border: 1px solid var(--border-color);
+.up_img_name{
+  .listing_br{
+    justify-content: space-between;
+    margin-bottom: 10px;
+    img{max-width: 20px; cursor: pointer;}
+    label{
+     
+      font-size: 14px !important;
+    }
+  }
+}
+}
+.up_file{
+    .ant-upload-drag{
+      height: auto;
+      border: 2px dashed;
+      border-color:var(--parimary-color) !important;
+      background: #fff;
+      .ant-upload{padding: 10px !important;}
+      .ant-upload-drag-container{
+        h6{
+          
+          margin: 2px 0px;
+        }
+        p{
+          margin: 2px 0px;}
+      }
+    }
+   
+  }
+  /************************ Upload file CSS End *******************/
+  /********************* ALignment Goal CSS start ********************/
+  .al_goal_cont {
+    position: relative;
+    margin-bottom: 20px;
+    .d-flex{
+      align-items: center;
+      h6{
+        font-weight: normal;
+        color: #575757;
+       
+      }
+      .circle{
+       
+        margin-right: 25px;
+        height: 25px;
+        width: 25px;
+        text-align: center;
+        position: relative;
+      }
+  }
+  svg.minus {
+    display: none;
+}
+  svg.plus {
+    position: relative;
+    top: 5px;
+}
+.conntent-close{
+  display: none;
+}
+.conntent-open {
+  display: block;
+  margin-left: 50px;
+  padding: 20px 0;
+}
+}
+.al_goal_cont:before {
+  content: "";
+  width: 2px;
+  background: #dadada;
+  left: 11px;
+  height: 100%;
+  position: absolute;
+  top: 20px;
+}
+.al_goal_cont.conntent-open {
+  .minus {
+    display: block;
+    position: relative;
+    top: 11px;
+    left: 7px;
+  }
+  .plus{display: none;} 
+}
+.al_goal_cont .d-flex.completed h6{
+  color: $green;
+}
+.al_goal_cont .d-flex.completed .circle{
+background: $green;
+}
+.al_goal_cont .d-flex.in-progress h6{
+  color: var(--parimary-color);
+}
+.al_goal_cont .d-flex.in-progress .circle{
+  background: var(--parimary-color);
+}
+.al_goal_cont:last-child:before {
+  display: none;
+}
+.align_table{
+  .ant-table table tr td {
+    border: 1px solid var(--border-color) !important;
+}
+.ant-table table tr th {
+display: none !important;
+}
+}
+.al_goal_cont.conntent-open{
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  .ant-pagination{
+    margin-bottom: 0;
+  }
+  .cmn_btn span.rectangle.up svg{
+    transform: rotate(90deg);
+  }
+  .cmn_btn span.rectangle.down svg{
+    transform: rotate(-90deg);
+  }
+}
+
+.cmn_btn {
+  .alignmentgoal-btn{
+    display: flex;
+  }
+}
+.align_table  .cmn_btn  .alignmentgoal-btn{
+  display: flex !important;
+}
+.align_table  .cmn_btn .d-flex{display: none;} 
+    /********************* ALignment Goal CSS End ********************/
+   /************************* Preview screen start **************/
+   .preview_screen {
+    padding: 15px;
+    padding-top: 5px;
+}
+/*********************** Preview screen end *************/ 
+/******************* Success Section CSS start *******************/
+.content_sec.success {
+  margin-top: 0px;
+  margin-left: 0;
+  margin-right: 15px;
+  height: 86vh;
+  border-radius: 10px;
+  text-align: center;
+  background: #fff;
+  img{
+    margin-top: 150px;
+  }
+  h1{
+    font-size: 50px !important;
+    line-height: 25px;
+    margin-bottom: 35px;
+
+  }
+  p{
+   
+    margin-bottom: 15px;
+    margin-top: 5px;
+  }
+  h6{
+    color: #575757;
+    margin-bottom: 5px;
+  }
+  .cmn_box_value{margin:auto}
+}
+h5.go_to_home {
+  color: #000 !important;
+    
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg{
+      transform: rotate(180deg);
+      margin-left: 10px;
+      path{
+        fill:var(--parimary-color) !important;
+      }
+    }
+}
+@media(max-width:1500px){
+  .content_sec.success img {
+    margin-top: 100px !important;
+}
+}
+.cmn_box_value {
+  border: 1px dashed var(--parimary-color);
+  color: var(--parimary-color);
+  padding: 10px;
+  width: 220px;
+  background: #F6F7FF;
+ margin-top: 10px;
+  border-radius: 6px;
+  text-align: center;
+}
+.planned-progress .cmn_box_value.err {
+  color: var(--rejected);
+  border: 1px dashed var(--rejected) !important;
+}
+/******************* Success Section CSS End *******************/
+/******************* Reviewer screen CSS start *****************/
+.reviewer.spc_control {
+  margin: 35px 12px 15px 0;
+  margin-bottom: 120px;
+  .floating-button {
+    background-color: var( --parimary-color) !important;
+  }
+}
+.reviewer{
+  .breadcrumb{
+    left:101px;
+  }
+  .main_cont {
+    flex: 92% 1;
+    max-width: 93%;
+    // margin-top: 150px;
+}
+.grouping .label-data {
+  margin-top: 12px;
+}
+.cmn_stepper {
+  background: #fff;
+  position: static;
+  width: auto;
+  margin-top:15px;
+  border-radius: 8px;
+  .each_step{
+    border-color: var(--parimary-color);
+    color: var(--parimary-color);
+    .circle{
+      background: var(--parimary-color);
+    }
+  }
+}
+.cmn_stepper .each_step:before{display: none;}
+.each_step.d-flex.completed {
+  background: var(--parimary-color) !important;
+  color: #fff;
+  .circle
+  {
+    background: #fff !important;
+  }
+}
+.cmn_collapse {
+  margin-top: 15px;
+  margin-left: 15px;
+}
+.preview_screen .grouping .label-data {
+  margin-top: 5px;
+}
+.pr_rq_form {
+ .ant-row{
+  align-items: center;
+ }
+   .ant-col-md-6 {
+    .grouping{
+      margin-bottom: 0;
+    }
+    width: 22%;
+    flex: 22%;
+    max-width: 22%;
+    &:last-child{
+      width:10% !important;
+      max-width:10% !important;
+      flex: 10% !important;
+    }
+}
+}
+}
+/******************* Reviewer screen CSS End *****************/
+/****************** Fixed Button CSS start **************/
+.fixed_footer_btn {
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  width: 94%;
+  left: 5%;
+  padding: 15px;
+  z-index: 99;
+  .d-flex{justify-content: center !important;}
+}
+/****************** Fixed Button CSS End **************/
+//********************************** Data Loading Popup start *********************** /
+.dta_loading {
+  width: 800px ! IMPORTANT;
+}
+.dta_loading{
+  .ant-modal-content,.ant-modal-body{
+      padding: 0 !important;
+      .loadin_data {
+        background: #EEEEEE;
+        padding: 20px;
+      
+    }
+  }
+  .ant-modal-header {
+    padding: 16px;
+    margin-bottom: 0;
+  }
+  .loading_form {
+    padding: 20px;
+   
+    .ant-select{
+      width: 100% !important;
+      margin-bottom: 10px;
+    }
+    .ant-input{
+      width: 96% !important;
+      height: 100px;
+      border-radius: 6px;
+      padding: 15px;
+      border-color: #CBCCCE !important;
+      &:focus-visible{
+        border-color: var(--parimary-color) !important;
+      }
+    }
+    
+}
+  
+  .ant-modal-footer {
+      padding: 25px ! IMPORTANT;
+      padding-top: 0px !important;
+      text-align: center;
+      margin-top: 0 !important;
+      .ant-btn{width: 150px;}
+      .ant-btn-default{
+        @include common_button();
+        background-color:#fff !important;
+        color:  var( --parimary-color) !important;
+        border: 1px solid  var( --parimary-color) !important;
+        :hover{
+            background-color:#fff !important;
+        }
+      }
+      .ant-btn-primary{
+        @include common_button();
+        background-color: var( --parimary-color) !important;
+        border:1px solid  var( --parimary-color) !important;
+        color:#fff !important; 
+        &:hover{
+          background-color:  var(  --btn-hover) !important;
+        }
+      }
+  }
+  
+}
+span.c_red {
+  color: #ff0000;
+}
+.modal_btn{
+  justify-content: center !important;
+  display: flex;
+  gap: 10px;
+}
+/******************************* My Task CSS start ********************/
+.my_task {
+  margin: 0px 20px 20px 10px !important;
+  .my_task_had {
+    margin-bottom: 10px;
+}
+.img-btn-filled{margin-left: auto;}
+}
+span.circle.circle_white {
+  background: #df020230 !important;
+  height: 30px !important;
+  width: 30px !important;
+  display: inline-block;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 50%;
+  color: #000;
+  line-height: 33px;
+  border: 1px solid #e3bbbb;
+  font-weight: 700;
+}
+.status {
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  text-align: center;
+  padding: 2px;
+  line-height: 24px;
+}
+.my_task_had{
+  .d-flex {
+    background: #53565A;
+    padding: 12px 20px;
+    margin-left: 0px;
+    border-radius: 6px;
+    justify-content: space-between;
+    color: #fff;
+    padding-left: 70px;
+    h6{
+      width:15%;
+      text-align: left;
+    }
+    h6.id{
+      text-align: left !important;
+      width: 3% !important;
+    }
+    h6.action.text-right {
+      text-align: right;
+  }
+  }
+}
+.my_task_data .d-flex h6.checkbox,.my_task_had .d-flex h6.checkbox{
+  width: 2%  !important;
+}
+.my_task_data{
+  .d-flex{
+    justify-content: space-between;
+    align-items: center;
+    h6{
+      width:15%;
+      text-align: left;
+    }
+    h6.id{
+      text-align: left !important;
+      width: 3% !important;
+    }
+    h6.d-flex.action{justify-content: right;
+     svg{ 
+      max-height: 15px;
+    position: relative;
+    top: 4px;
+     }
+    }
+    h6.status_width{
+      text-align: center;
+    }
+  }
+}
+.id_no{width:8%  !important}
+h6.status_width {
+  width: 14% !important;
+  line-height: 23px;
+  font-size: 14px ! IMPORTANT;
+  margin: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+h6.action {
+  width: 10% ! IMPORTANT;
+}
+
+.my_task{
+  svg.custom-icon {
+    position: absolute;
+    top: 33px;
+    left: 14px;
+    width: 30px;
+    height: 30px;
+    opacity: 0;
+}
+  .seacrh_sec{
+    justify-content: flex-start;
+    .ant-col-md-8{
+      display: flex;
+      justify-content: right;
+      button{
+        margin-left: 10px;
+      }
+    }
+  }
+  .cmn_collapse .ant-collapse-header{
+    padding-left: 70px !important;
+    background: #fff;
+    border-radius: 8px;
+    min-height: 54px;
+  }
+  .cmn_collapse .ant-collapse-header .ant-collapse-expand-icon {
+    position: absolute;
+    left: 18px;
+    background: var(--parimary-color);
+    text-align: center;
+    border-radius: 50%;
+    top: 33px;
+    width: 25px;
+    height: 25px;
+    padding-inline-start: 0px ! IMPORTANT;
+    svg{
+      height: 16px;
+      position: relative;
+      top: 0;
+      left: 7px;
+      path{
+        fill:#fff !important;
+      }
+    }
+}
+.cmn_collapse .ant-collapse-item {
+  background: transparent;
+  margin-bottom: 12px;
+  border: none !important;
+  border-radius: 0 !important;
+}
+.cmn_collapse .ant-collapse-content {
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1607843137);
+  width: 98%;
+  margin-left: 20px;
+}
+.ant-collapse-content-box{
+  padding: 16px 45px !important;
+}
+}
+.my_task_data .d-flex h6.d-flex.action div {
+  background: #EFEFF2;
+  margin-left: 8px;
+  padding: 5px;
+  border-radius: 4px;
+}
+/********************************* My Task stepper ******************/
+.mytask_stepper{
+  padding: 20px 0px;
+  .flex-align{
+    justify-content: space-between;
+    .mytask_each_cir {
+      text-align: center;
+      position: relative;
+      .circle {
+        height: 60px;
+        width: 60px;
+        background:#53565A;
+        border-radius: 50%;
+        text-align: center;
+        margin: auto;
+        position: relative;
+    top: 5px;
+        img{
+          position: relative;
+          top: 16px;
+          left: 2px;
+          height: 28px;
+        }
+    }
+    .cir_outer {
+      width: 70px;
+      height: 70px;
+      border: 2px solid var(--border-color);
+      border-radius: 50%;
+      margin: auto;
+      background: #fff;
+      position: relative;
+  }
+    h6{
+      margin-top: 10px;
+      font-weight: 700;
+     
+    }
+    p{
+      font-weight: normal;
+      width: 100px;
+      line-height: 20px;
+      margin-top: 10px;
+      height: 56px;
+    }
+  }
+
+  }
+} 
+.mytask_each_cir.completed {
+  .circle {
+    background: $green !important;
+  }
+  h6{
+    color: $green !important;
+  }
+
+}
+.mytask_each_cir.in-progress .circle{
+  background: var(--parimary-color) !important;
+}
+.completed .cir_outer {
+  border-color: $green !important;
+}
+.mytask_each_cir.in-progress .cir_outer {
+  border: 2px dashed var(--parimary-color) !important;
+}
+.mytask_each_cir.in-progress h6{ color: var(--parimary-color);}
+.mytask_each_cir:before {
+  content: "";
+  width: 100%;
+  height: 1px;
+  border-color: var(--border-color);
+  position: absolute;
+  top: 39px;
+  left: 74px;
+  border-top: 1px dashed;
+}
+.mytask_each_cir:last-child:before {
+  width: 46% !important;
+} 
+.mytask_each_cir.completed:before {
+  border-top:1px solid $green  !important;
+}
+.mytask_each_cir.in-progress:before {
+  border-top:1px solid var(--parimary-color)  !important;
+}
+.mytask_stepper .flex-align .mytask_each_cir:last-child:after {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background: var(--border-color);
+  position: absolute;
+  top: 31px !important;
+  right: -31px;
+  border-radius: 50%;
+}
+.mytask_each_cir:first-child:after {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background: var(--border-color);
+  position: absolute;
+  top: 31px !important;
+  left: -28px;
+  border-radius: 50%;
+}
+.mytask_each_cir.completed:first-child:after{
+  background: $green !important;
+}
+.mytask_each_cir:first-child .cir_outer:before {
+  content: "";
+  width: 45%;
+  height: 1px;
+  background: var(--border-color);
+  position: absolute;
+  top: 36px;
+  left: -32px;
+}
+.mytask_each_cir.completed:first-child .cir_outer:before{
+  background: $green !important;
+}
+.ste_data {
+  justify-content: space-between;
+  padding-bottom:20px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 30px;
+  .step_data_cont{
+    h4{
+      color:var(--parimary-color);
+    }
+    p{
+      font-size: 14px !important;
+
+    } 
+  }
+  .step_cnt1{
+    width:25%;
+    border-right: 1px solid var(--border-color);
+  }
+  .step_cnt2{
+    width: 30%;
+    border-right: 1px solid var(--border-color);
+  }
+  .step_cnt3{
+    width: 30%;
+  }
+}
+/***************************** Budget CSS start ***********************/
+.budget-table {
+  border: 1px solid var(--border-color);
+  border-top: 0;
+  margin: 15px 0px;
+  table{
+    width:100%;
+    border-collapse: collapse;
+    tr td{
+      border-top: 1px solid var(--border-color);
+      padding: 8px 12px;
+      &:first-child{width: 80%;}
+    }
+    .ant-input {
+      width: 160px !important;
+      height: 40px !important;
+      text-align: right;
+      font-weight: 600;
+    }
+
+  }
+  tr:nth-child(even) {background-color: $tableevencolor !important;}
+  tr:nth-child(odd) {background-color: #fff !important;}
+}
+.budget-table.total {
+  border: none;
+  table{
+    border: 1px dashed var(--parimary-color);
+    tr td{
+      background: #E8E8F4;
+      border: none;
+    }
+  }
+  
+}
+/***************************** Budget CSS End ***********************/
+/********************** Time Frame Table start ***************/
+.time_frame_table{
+  table {
+    width: 100%;
+    border: 1px solid var(--border-color) !important;
+    border-collapse: collapse;
+    tr th{
+      background: #53565A !important;
+      color: #fff !important;
+      border: 0 !important;
+      padding:10px 15px ! IMPORTANT;
+      font-weight: normal !important;
+      text-align: left;
+    }
+    tr td{
+      padding:10px  15px ! IMPORTANT;
+      
+     font-weight: normal;
+     text-align: left;
+     border-left: 1px solid var(--border-color);
+    
+    }
+    tr:nth-child(even) {background-color: $tableevencolor !important;}
+  tr:nth-child(odd) {background-color: #fff !important;}
+  }
+  //max-width: 100%;
+  overflow-x: auto;
+} 
+.time_frame_table input,.planned-progress input {
+  width: 50px;
+  height: 30px;
+  border-radius: 4px;
+  border: 1px solid var(--border-color) !important;
+  padding-right: 15px;
+  text-align: right;
+  margin-right: 5px;
+}
+.planned-progress .cmn_box_value{width:150px !important;border: 1px dashed var(--parimary-color) !important;height: auto;    margin-top: 0;} 
+
+/********************** Time Frame Table End ***************/
+/********************** Alignment Goals css start ***************/
+.al_goal{
+  .ant-collapse {
+    border: 0;
+    background: #fff;
+    .ant-collapse-item {
+      border: none !important;
+      position: relative;
+      &::before{
+        
+          content: "";
+          width: 1px;
+          height: 100%;
+          position: absolute;
+          background:var(--border-color);
+          left: 27px;
+          top: 21px;
+      }
+      
+      .ant-collapse-header {
+        align-items: center ! IMPORTANT;
+        .ant-collapse-expand-icon {
+          width: 25px ! IMPORTANT;
+          height: 25px ! IMPORTANT;
+          background: #c3c3c3;
+          margin-right: 10px;
+          border-radius: 50%;
+          justify-content: center;
+          padding-inline-end: 0 !IMPORTANT;
+          position: relative;
+          z-index: 9;
+          svg path{
+            fill:#fff;
+          }
+      }
+        span.ant-collapse-header-text {
+          color: var(--border-color);
+      }
+    }
+     
+  }
+  .ant-collapse-content.ant-collapse-content-active {
+    padding-left: 40px;
+    border: none;
+}
+}
+.ant-collapse-item.customPanel:last-child:before {
+  display: none;
+}
+.ant-select{
+  // height:32px !important;
+  width: 100% !important;
+}
+.ant-collapse-item-active span.ant-collapse-header-text {
+  color: var(--parimary-color)!important;
+}
+.ant-collapse .ant-collapse-item.ant-collapse-item-active .ant-collapse-header .ant-collapse-expand-icon{
+  background-color: var(--parimary-color) !important;
+}
+.completed span.ant-collapse-header-text {
+  color: $green !important;
+}
+.ant-collapse .ant-collapse-item.completed .ant-collapse-header .ant-collapse-expand-icon{
+  background-color: $green !important;
+}
+}
+/********************** Alignment Goals css End ***************/
+.ease_of_imp{
+  .cmn_tit{
+    margin-top:10px;
+  }
+}
+/********************* Status Color changes **************/
+.approved{
+  color: var(--approved) !important;
+  border-color: var(--approved) !important; ;
+}
+.pending{
+  color: var(--pending) !important;
+  border-color: var(--pending) !important; ;
+}
+.sendback{
+  color: var(--sendback) !important;
+  border-color: var(--sendback) !important; ;
+}
+.rejected{
+  color: var(--rejected) !important;
+  border-color: var(--rejected) !important; ;
+}
+.waiting{
+  color: var(--waiting) !important;
+  border-color: var(--waiting) !important; ;
+
+}
+.preview_screen .al_goal .ant-collapse .ant-collapse-item .ant-collapse-header {
+  align-items: center !important;
+  box-shadow: none !important;
+}
+/*************** Other Details collapse styling ***************/
+.al_goal.collapse_active .ant-collapse .ant-collapse-item .ant-collapse-header span.ant-collapse-header-text {
+  color: #1a1a1a;
+}
+.al_goal.collapse_active .ant-collapse .ant-collapse-item .ant-collapse-header .ant-collapse-expand-icon{
+  background-color: var(--parimary-color);
+}
+.in-progress span.rectangle.down svg {
+  transform: rotate(-90deg);
+}
+.in-progress span.rectangle.up svg {
+  transform: rotate(90deg);
+} 
+
+//Switch toggle
+.ant-switch-handle {
+  background: white;
+  border-radius: 50%;
+}
+button.ant-switch.ant-switch-checked {
+  background: var(--parimary-color) !important;
+}
+.time_total_box {
+  margin-left: 10px;
+}
+.time_total {
+  margin-left: auto;
+}
+// disabled  input field value 
+input.ant-input.ant-input-disabled,.ant-select.ant-select-disabled span.ant-select-selection-item {
+  color: #1a1a1a !important;
+}
+//arabic input
+.textarea-rtl {
+  direction: rtl;
+  text-align: right;
+}
+//timeframe-- new css added for multiple rows
+.error {
+  color: red;
+  margin-bottom: 10px;
+}
+.timefram_rows{
+   display: 'flex';
+   text-align: 'center';
+   justify-content: 'space-between';
+   }
+
+ .timeframe_input{
+    margin-right: '5px';
+    width: '50px';
+   }
+
+   .timeframe_total_box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+  
+  .input-group {
+    display: flex;
+    align-items: center;
+    margin-right: 15px; /* Adjust the spacing between input groups as needed */
+  }
+  
+  .margin_right_15 {
+    margin-right: 5px; /* Adjust the spacing between label and input as needed */
+  }
+  
+  .year-input {
+    width: 25px; /* Adjust the width of the input fields as needed */
+    margin-right: 5px; /* Adjust the spacing between input and '%' symbol */
+  }
+  //AuditorTrail--css changes
+ 
+
+  .approval-stage {
+     margin-bottom: 20px;
+  }
+  
+  .stage-details {
+    display:"flex";
+     justify-content:'space-between';
+    // margin-bottom:"10px";
+  }
+  
+  .detail-row {
+    // display: flex;
+   
+  }
+  .stage-details .detail-row .label-head {
+    font-weight: bold;
+  }
+  
+  .stage-details .detail-row .label-data {
+    margin-left: 10px;
+  }
+  
+  .mb-3 {
+    margin-bottom: 10px;
+  }
+  /********************* Audit Trail Pop CSS ******************/
+  .arove_trail{
+    width: 1150px !important;
+    .ant-modal-content{
+      padding: 0 !important;
+      .ant-modal-header {
+        border-bottom: 1px solid var(--border-color) ! IMPORTANT;
+        padding: 15px ! IMPORTANT;
+        .ant-modal-title {
+          position: relative;
+          top: 5px;
+      }
+    }
+    .ant-modal-body {
+        padding: 10px 25px ! IMPORTANT;
+        padding-left: 50px ! IMPORTANT;
+        height: 600px;
+        overflow-y: scroll;
+        h4{
+          color: var(--parimary-color);
+          margin-bottom: 5px;
+        }
+        .approval-stage {
+          border-bottom: 1px solid var(--border-color);
+          padding-bottom: 15px;
+          position: relative;
+      }
+        .stage-details {
+          display: flex;
+          justify-content: space-between;
+          padding-left: 12px;
+          .detail-row{
+            .label-head{
+              font-weight: normal;
+            }
+            .label-data{
+              margin-left: 0;
+            }
+          }
+          .detail-row.comment{
+            width: 315px;
+          }
+          .detail-row.statuscol {
+            width: 170px;
+        }
+      }
+      .approval-stage:after {
+        content: "";
+    width: 1px;
+    background: var(--parimary-color);
+    height: 100%;
+    position: absolute;
+    top: 23px;
+    left: -23px;
+    }
+    
+    .approval-stage:before {
+        content: "";
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+       
+        border: 2px solid var(--parimary-color);
+        position: absolute;
+        left: -31px;
+        top: 3px;
+        }
+        .approval-stage.in-progress::before{
+          background: var(--parimary-color) !important;
+        }
+        .approval-stage:last-child:after {
+          display: none;
+      }
+      }
+    }
+ 
+  }
+
+  .dta_loading-skipper {
+    width: fit-content !important;
+    .ant-modal-content,.ant-modal-body{
+      padding: 20px 40px 0px 40px!important;
+    }
+    .ant-modal-footer {
+      padding: 25px ! IMPORTANT;
+      padding-top: 0px !important;
+      text-align: center;
+      margin-top: 0 !important;
+      .ant-btn{width: 150px;}
+      .ant-btn-default{
+        @include common_button();
+        background-color:#fff !important;
+        color:  var( --parimary-color) !important;
+        border: 1px solid  var( --parimary-color) !important;
+        :hover{
+            background-color:#fff !important;
+        }
+      }
+      .ant-btn-primary{
+        @include common_button();
+        background-color: var( --parimary-color) !important;
+        border:1px solid  var( --parimary-color) !important;
+        color:#fff !important; 
+        &:hover{
+          background-color:  var(  --btn-hover) !important;
+        }
+      }
+  }
+  }
+
+  .dta_loading-risk-register {
+    width: 70% !important;
+    height: 500px !important;
+    .ant-modal-content,.ant-modal-body{
+      padding: 10px 40px 0px 40px!important;
+    }
+    .ant-modal-body{
+      // height: 500px !important;
+      overflow-y: hidden;
+      .search-input{
+        height: 100% !important
+      }
+    }
+    .checkbox-row{
+      height: auto !important;
+      margin-top: 16px;
+      overflow-y: scroll;
+      .item-container {
+        padding: 8px; 
+
+      }
+    }
+    .pagination{
+      margin-top: 20px;
+      margin-bottom: 20px;
+      width: 100% !important;
+    }
+}
+
+.risk-register-table .ant-table {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.risk-register-table .ant-table-thead > tr > th {
+  background-color: var( --parimary-color) !important;
+  font-weight: bold;
+  text-align: center;
+}
+
+.risk-register-table .ant-table-tbody > tr > td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 12px;
+}
+
+.risk-register-table .ant-checkbox-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.cmn_box_value_2 {
+  border: 1px solid var(--parimary-color);
+  color: white; 
+  // background: #F6F7FF;  
+  background:  var( --parimary-color) !important;;  
+  // color:  var( --parimary-color) !important;;  
+  border-radius: 20px;
+  text-align: center;
+  padding: 4px 8px;
+  // line-height: 24px;
+}
+
+.al_goal .cmn_table label.ant-radio-wrapper {
+  margin-bottom: 8px;
+   display: flex;
+   align-items: center;
+span.ant-radio-inner {
+   width: 25px ! IMPORTANT;
+   height: 25px !important;
+}
+}
+.al_goal.other_det .ant-select {
+  width: 300px !important;
+}
+.dep_sec{
+  height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 200px;
+    white-space: nowrap;
+    margin-top: 23px;
+}

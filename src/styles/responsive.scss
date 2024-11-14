@@ -1,0 +1,237 @@
+@media only screen and (min-width: 1200px) and (max-width: 1366px) {
+    header{
+        padding: 12px 25px;
+        .flex-align img {
+            max-height: 75px;
+        }
+    }
+    .side-menu{
+      width: 90px;
+      .prof_sec{
+        padding-left: 8px;
+      }
+      .menu_sec{
+        padding-left: 18px;
+      }
+    }
+    .landing_page {
+        padding: 15px 25px 20px 25px;
+        .landing_each_box{
+            h4{
+                width: 140px;
+            }
+            &.p-30{
+                padding: 25px 30px !important;
+            }
+            svg{
+                height: 40px;
+            }
+            h2{
+                font-size: 32px !important;
+            }
+            &.ml-5{
+                margin-left: 145px !important;
+            }
+        }
+        .seacrh_sec .ant-btn .circle{
+            height: 20px;
+            width: 20px;
+            font-size: 20px;
+            line-height: 26px;
+        }
+    }
+    .landing_each_box.p-30{
+        padding: 22px 30px !important;
+    }
+    .cmn_stepper{
+        padding: 15px;
+        left: 90px;
+        width: 17%;
+    }    
+    .breadcrumb{
+        left: 25.8%;
+        top: 100px; 
+    }
+    .content_sec{
+        margin-left: 70px;
+    }
+    .ant-form-item-label{        
+        padding-bottom: 4px !important;
+        > label {
+            height: 20px !important;
+          }
+    }
+    .ant-form-item-required::before{
+        font-size: 12px !important;
+    }
+   
+    .ant-btn{
+        padding: 8px 12px !important;
+    }
+    .my_task {
+        margin: 0px 20px 20px 25px !important;
+    }
+    .ant-input, .ant-select{
+        height: 40px !important;
+    }
+    .reviewer{
+        margin-bottom: 80px !important;
+        .ant-col-md-4{width:25%;flex:25%;max-width: 25%;}
+        .ant-col-md-20{width:75%;flex: 75%;max-width: 75%;}
+    }
+    .reviewer.spc_control{
+        margin: 35px 12px 15px 20px !important;
+    }
+    h6.status_width{
+        width: 15% !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+/******************************** MObile Responsive CSS Start **************************/
+@media(min-width:340px) and (max-width:767px){
+    
+    .landing_page .seacrh_sec{
+        display: block;
+    }
+    .landing_page .seacrh_sec .ant-select {
+        margin: 10px 0px;
+    }
+    .landing_page .seacrh_sec .ant-input, .landing_page .seacrh_sec .ant-select{width:100% !important;}
+    .landing_page .ant-col-md-18{width:100%;}
+    .landing_page .seacrh_sec .img-btn-filled{width: 100% !important;margin-bottom: 15px;}
+    .landing_page .ant-col-md-6 {
+        width: 100%;
+    }
+    .crt_proj_row {
+        .ant-col-md-4{
+            width: 100%;
+            flex: 100%;
+            .cmn_stepper {
+                position: static;
+                width: 89%;
+                margin-top: 65px;
+            }
+        }
+        .content_sec {
+            margin: 15px !important;
+            margin-top: 25px !important;
+            form {
+                .ant-row {
+                    display: block;
+                    .ant-col {
+                        width: 100%;
+                        flex: 100% !important;
+                        max-width: 100%;
+                    }
+                }
+            } 
+        }
+        
+    }
+    .cmn_btn .ant-btn {
+        width: 130px;
+        margin-left: 15px;
+    }
+   .ant-table-content{overflow: scroll;}
+}
+/*********************** Common For Mobile and Tab **********************/
+@media(min-width:340px) and (max-width:1200px){
+    .left_menu {
+        display: none;
+    }
+    .side-menu{
+        display: none;
+        top: 0;
+        width: 100%;
+    }
+    .landing_page{margin-top: 65px;}
+    header .flex-align img {
+        max-height: 45px;
+        width: 133px;
+    }
+    .breadcrumb {
+       display: none;
+    }
+    .budget-table{
+        overflow-x: scroll;
+    }
+   
+}
+/*********************** Common For Tab css start  **********************/
+@media(min-width:767px) and (max-width:1100px){
+    .main_cont {
+        flex:100%;
+        max-width: 100%;
+        .landing_page{
+           .ant-row+.ant-row .ant-col.ant-col-md-6 {
+                flex: 50%;
+                max-width: 33%;
+               .landing_each_box h4 {
+                    width: 115px;
+                    margin: auto;
+                }
+            }
+        }
+        .crt_proj_row {
+            .ant-col-md-4{
+                width: 100%;
+                flex: 100%;
+                max-width: 100%;
+                .cmn_stepper {
+                    position: static;
+                    width: 95%;
+                    // margin-top: 65px;
+                }
+            }
+            .ant-col-md-20{
+                width: 100%;
+                flex: 100%;
+                max-width: 100%;
+                .content_sec{
+                    margin: 20px;
+                }
+            }
+        }
+    }
+
+}
+/******************************** MObile and Ipad Responsive CSS End **************************/
+/************************************** larger screen resolution layout fixes ************************/
+@media(min-width:1921px) and (max-width:2050px){
+    .breadcrumb{
+        left:21.9% !important;
+    }
+    body .img-btn-transparent span,body .img-btn-filled span {
+        position: relative;
+        top: 3px !important;
+    }
+    body .img-btn-transparent span.reactangle,body .img-btn-filled span.rectangle {
+        position: static !important;
+        
+    }
+    .ant-tabs .ant-tabs-tab:before {
+       
+        position: relative;
+        bottom: 3px;
+    }
+    .reviewer{
+        .breadcrumb {
+            left: 101px !important;
+        }
+        .al_goal .ant-collapse .ant-collapse-item::before{
+            left:41px !important;
+        }
+    } 
+    .arove_trail .ant-modal-content .ant-modal-body .stage-details .detail-row.statuscol {
+        width: 250px;
+    }
+    .arove_trail {
+        width: 1300px !important;
+        h4, p, h5, h6, div{
+            font-size: 18px !important;
+        }
+    }
+}
